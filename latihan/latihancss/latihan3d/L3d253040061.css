@@ -1,0 +1,34 @@
+body{
+    background-image: url(/latihan/latihancss/baground latihan.png);
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    font-family: Georgia;
+}
+h1{
+    color: darkblue;
+    font-family: Comic Sans MS;
+    font-size: 60px;
+    text-align: center;
+}
+h3{
+    text-align: center;
+}
+h4{
+    text-align: center;
+    font-style: italic;
+}
+.sosmed{
+    color: red;
+}
+
+.mark:hover{
+    background-color: blue;
+    color: white;
+}
+
+p{
+    text-align: center;
+}
+p1{
+    color: brown;
+}

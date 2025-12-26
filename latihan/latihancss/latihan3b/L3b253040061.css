@@ -1,0 +1,22 @@
+body {
+    background-color: aqua;
+    font-family: georgia;
+}
+h1 {
+    color: darkblue;
+    font-size: 60px;
+    font-family: Sans MS;
+}
+h4 {
+    text-align: end;
+    font-style: italic;
+}
+.sosmed{
+    color: white;
+}
+p{
+    text-align: center;
+}
+.p1{
+    color: brown;
+}
