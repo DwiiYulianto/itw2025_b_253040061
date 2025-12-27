@@ -3,20 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Portofolio Dwi</title>
+    <title>Portofolio Dwi Yulianto Putra</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- NAVBAR -->
     <nav>
-        <div class="wrapper">
-            <div class="logo"><img src="img" alt=""></div>
-            <div class="menu">
-                <ul>
-                    <li><a href="">Premium course</a></li>
-                    <li><a href="">Tentang saya</a></li>
-                    <li><a href="">Free course</a></li>
-                </ul>
+        <div class="logo">Porto<span>Folio</span></div>
+        <div class="hamburger" id="hamburger-btn">
+            <i class="fas fa-bars"></i>
         </div>
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="#home" class="active">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#projects">Proyek</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
     </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home">
+        <div class="hero-content">
+            <h1>Saya <span>Dwi Yulianto Putra</span></h1>
+            <h3>Saya seorang <span class="typewriter" id="typewriter-text"></span></h3>
+            <p>Mahasiswa baru yang sedang belajar membuat website sendiri. </p>
+            <br>
+            <a href="#projects" class="btn">Karya Saya</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <h2 class="heading">Tentang <span>Saya</span></h2>
+        <div class="about-content">
+            <div class="about-img">
+                <img src="imgproject/0c4be1b2-8baa-4a57-8302-cde0b5e31618.jfif" alt="Foto Profil"></div>
+            <div class="about-text">
+                <h3>Frontend Developer & UI Designer</h3>
+                <p>Saya adalah seorang  Mahasiswa UNIVERSITAS PASUNDAN yang sedang mencoba membuat web yang bersemangat dengan fokus pada antarmuka pengguna yang bersih dan interaksi yang lancar.</p>
+                
+                <div class="skills-container">
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">React JS</span>
+                    <span class="skill-tag">Tailwind CSS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <h2 class="heading">Foto <span>Terbaru</span></h2>
+        <div class="projects-container">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="imgproject/img_project1.jfif" alt="Proyek 1">
+                </div>
+                <div class="project-info">
+                    <h4>Band Lisma Saya</h4>
+                    <p>Band saya yang beranggotakan 5 orang dengan nama WINE EXPERT. </p>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="imgproject/imgproject2.jfif" alt="Proyek 2">
+                </div>
+                <div class="project-info">
+                    <h4>Nangka Buyuk</h4>
+                    <p>Ini adalah teman teman saya di Lisma yang pernah disangka tidak bisa menyatukan anggota kelompok oleh salah seorang padahal orang itu sendiri yang tidak bisa menyatukan anggota kelompok dan tidak bisa berbaur sama anggota kelompoknya dan malah memilih diem sendiri.</p>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="imgproject/imgproject3.jfif" alt="Proyek 3">
+                </div>
+                <div class="project-info">
+                    <h4>2 F / FADEL dan FADHIL</h4>
+                    <p>Upin Ipin nya UNPAS, Ini adalah teman saya di kampus yang sering membantu saya dalam kesulitan mengerjakan tugas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+        <h2 class="heading">Hubungi <span>Saya</span></h2>
+        <form id="contact-form">
+            <div class="input-box">
+                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="email" placeholder="Alamat Email" required>
+            </div>
+            <div class="input-box">
+                <input type="number" placeholder="Nomor HP">
+                <input type="text" placeholder="Subjek Email">
+            </div>
+            <textarea cols="30" rows="10" placeholder="Pesan Anda" required></textarea>
+            <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>Copyright &copy; 2025 Dwi Yulianto Putra</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="javascrip/script.js"></script>
+
 </body>
 </html>

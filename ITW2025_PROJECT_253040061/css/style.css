@@ -1,42 +1,392 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+/* --- VARIABEL WARNA & RESET --- */
+:root {
+    --primary-color: #00d4ff; /* Warna utama: Biru Neon */
+    --secondary-color: #1a1a1a; /* Background utama */
+    --text-color: #e0e0e0; /* Warna teks */
+    --card-bg: #252525; /* Warna latar kartu */
+    --nav-bg: rgba(26, 26, 26, 0.95); /* Warna navbar transparan */
+}
 
-html,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth; /* Membuat scroll halaman menjadi halus */
+}
+
 body {
-    margin: 0px;
-    padding: 0px;
-    font-size: 16px;
-    font-family: "Nunito", sans-serif;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-.wrapper {
-    width: 1024px;
-    margin: auto;
-    padding: 20px 0px 20px 0px;
-}
-
+/* --- NAVIGATION BAR --- */
 nav {
-    background-color: #6AECE1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: var(--nav-bg);
+    position: fixed; /* Navigasi tetap di atas saat scroll */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo span {
     color: #fff;
 }
-nav > .wrapper {
+
+.nav-links {
     display: flex;
-    justify-content: space-between;
-    font-size: 1.2rem;
+    list-style: none;
 }
 
-.menu {
-    width: 50%;
+.nav-links li {
+    margin-left: 2rem;
 }
 
-.menu > ul {
-    display: flex;
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-    justify-content: space-between;
-}
-
-.menu > ul > li > a {
+.nav-links a {
     text-decoration: none;
-    color: #fff;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+/* Efek Garis Bawah saat Hover Menu */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none; /* Sembunyikan tombol menu di layar desktop */
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+/* --- HERO SECTION (BERANDA) --- */
+#home {
+    height: 100vh; /* Tinggi penuh satu layar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+    text-align: center;
+    background: radial-gradient(circle at center, #2a2a2a 0%, #1a1a1a 100%);
+    padding-top: 80px; /* Kompensasi tinggi navbar */
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content h1 span {
+    color: var(--primary-color);
+}
+
+.hero-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+/* Animasi Kursor Mengetik */
+.typewriter {
+    border-right: 2px solid var(--primary-color);
+    padding-right: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: var(--primary-color);
+    color: #000;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--primary-color);
+}
+
+/* --- UMUM UNTUK SEMUA SECTION --- */
+section {
+    padding: 5rem 10%;
+}
+
+.heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.heading span {
+    color: var(--primary-color);
+}
+
+/* --- ABOUT SECTION --- */
+.about-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.about-img img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%; /* Membuat gambar bulat */
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.about-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* --- SKILLS TAGS --- */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.skill-tag {
+    background: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    border: 1px solid #444;
+    cursor: default;
+    transition: 0.3s;
+}
+
+.skill-tag:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* --- PROJECTS SECTION --- */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px); /* Efek kartu naik saat hover */
+}
+
+.project-img {
+    width: 100%;
+    height: 450px;
+    background-color: #444;
+    overflow: hidden;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-img img {
+    transform: scale(1.1); /* Zoom gambar sedikit saat hover */
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.project-links {
+    margin-top: 1rem;
+}
+
+.project-links a {
+    color: var(--text-color);
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.project-links a:hover {
+    color: var(--primary-color);
+}
+
+/* --- CONTACT SECTION --- */
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.input-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.input-box input, 
+textarea {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--card-bg);
+    border-radius: 0.5rem;
+    border: 1px solid #444;
+    margin: 0.7rem 0;
+    resize: none;
+}
+
+.input-box input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.input-box input {
+    width: 49%; /* Agar dua input bersanding */
+}
+
+button[type="submit"] {
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #111;
+    padding: 2rem 10%;
+    text-align: center;
+}
+
+.socials a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin: 0 0.5rem 1rem 0.5rem;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.socials a:hover {
+    background: var(--primary-color);
+    color: #000;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* --- RESPONSIVE / MEDIA QUERIES (Untuk Semua HP dan Tablet) --- */
+@media (max-width: 991px) {
+    section {
+        padding: 3rem 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block; /* Munculkan tombol menu di HP */
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 5%;
+        background: var(--nav-bg);
+        border-top: 1px solid #333;
+        flex-direction: column;
+        display: none; /* Sembunyikan menu secara default di HP */
+    }
+
+    /* Class ini akan ditambahkan oleh JavaScript saat tombol diklik */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+    }
+
+    .input-box input {
+        width: 100%; /* Input menjadi full width di HP */
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .about-content {
+        gap: 2rem;
+    }
 }
