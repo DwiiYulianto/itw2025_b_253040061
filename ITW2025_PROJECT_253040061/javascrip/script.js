@@ -1,119 +1,102 @@
-/* BAGIAN JAVASCRIPT UNTUK INTERAKSI WEBSITE */
+/* ===============================
+   BAGIAN JAVASCRIPT INTERAKSI
+================================ */
 
-// 1. Mobile Menu Toggle (Fungsi Hamburger)
-const hamburger = document.getElementById('hamburger-btn');
-const navMenu = document.getElementById('nav-menu');
+// Tunggu HTML siap dulu
+document.addEventListener('DOMContentLoaded', () => {
 
-// Saat tombol hamburger diklik, tambahkan/hapus class 'active'
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
+  /* 1. MOBILE MENU (HAMBURGER) */
+  const hamburger = document.getElementById('hamburger-btn');
+  const navMenu = document.getElementById('nav-menu');
 
-// Tutup menu saat link navigasi di klik (khusus mode mobile)
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        // Hapus class 'active' untuk menyembunyikan menu
-        navMenu.classList.remove('active');
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
     });
-});
 
+    // Tutup menu saat link diklik
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  }
 
-// 2. Typing Effect (Efek Mengetik di Bagian Hero)
-const textElement = document.getElementById('typewriter-text');
-// Daftar kata yang akan di ketik
-const words = ['Web Developer', 'UI/UX Designer', 'Mahasiswa Universitas Pasundan.'];
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+  /* 2. TYPING EFFECT */
+  const textElement = document.getElementById('typewriter-text');
+  const words = ['Web Developer', 'UI/UX Designer', 'Mahasiswa Universitas Pasundan'];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
 
-function type() {
+  function type() {
     const currentWord = words[wordIndex];
-    
+
     if (isDeleting) {
-        // Mode menghapus karakter
-        textElement.textContent = currentWord.substring(0, charIndex - 1);
-        charIndex--;
+      textElement.textContent = currentWord.substring(0, charIndex--);
     } else {
-        // Mode mengetik karakter
-        textElement.textContent = currentWord.substring(0, charIndex + 1);
-        charIndex++;
+      textElement.textContent = currentWord.substring(0, charIndex++);
     }
 
-    let typeSpeed = 100; // Kecepatan mengetik
+    let speed = isDeleting ? 50 : 100;
 
-    if (isDeleting) {
-        typeSpeed /= 2; // Menghapus lebih cepat
-    }
-
-    // Jika kata selesai diketik
     if (!isDeleting && charIndex === currentWord.length) {
-        isDeleting = true;
-        typeSpeed = 2000; // Jeda (pause) setelah kata selesai diketik
-    } 
-    // Jika kata selesai dihapus
-    else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length; // Pindah ke kata berikutnya
-        typeSpeed = 500; // Jeda sebelum mulai mengetik kata baru
+      isDeleting = true;
+      speed = 2000;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      speed = 500;
     }
 
-    // Ulangi proses
-    setTimeout(type, typeSpeed);
-}
+    setTimeout(type, speed);
+  }
 
-// Jalankan efek mengetik saat semua konten halaman dimuat
-document.addEventListener('DOMContentLoaded', type);
+  if (textElement) type();
 
+  /* 3. NAVBAR ACTIVE SAAT SCROLL */
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav ul li a');
 
-// 3. Active Link Highlighter (Menandai Link Navigasi yang Sedang Aktif)
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('nav ul li a');
-
-window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', () => {
     let current = '';
 
     sections.forEach(section => {
-        // Ambil posisi atas section
-        const sectionTop = section.offsetTop;
-        // Ambil tinggi section
-        const sectionHeight = section.clientHeight;
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.clientHeight;
 
-        // Cek apakah posisi scroll saat ini berada di dalam section
-        // (Dikurangi 1/3 tinggi section agar penanda aktif lebih cepat)
-        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-            current = section.getAttribute('id');
-        }
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
     });
 
-    // Loop melalui semua link navigasi
-    navLinks.forEach(a => {
-        // Reset warna semua link
-        a.style.color = 'var(--text-color)';
-        
-        // Jika href link mengandung ID section yang aktif, beri warna utama
-        if (a.getAttribute('href').includes(current)) {
-            a.style.color = 'var(--primary-color)';
-        }
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href').includes(current)) {
+        link.classList.add('active');
+      }
     });
-});
+  });
 
+  /* 4. FORM CONTACT (FAKE SUBMIT) */
+  const contactForm = document.getElementById('contact-form');
 
-// 4. Simple Form Alert (Simulasi Pengiriman Formulir)
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    // Mencegah halaman reload saat form disubmit
-    e.preventDefault(); 
-    
-    const btn = this.querySelector('button');
-    const originalText = btn.textContent;
-    
-    // Tampilkan pesan sukses sementara
-    btn.textContent = 'Pesan Berhasil Terkirim!';
-    btn.style.backgroundColor = '#2ecc71'; // Warna hijau
-    
-    // Kembalikan tombol ke keadaan semula setelah 3 detik dan reset form
-    setTimeout(() => {
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const btn = this.querySelector('button');
+      const originalText = btn.textContent;
+
+      btn.textContent = 'Pesan Berhasil Terkirim!';
+      btn.style.backgroundColor = '#2ecc71';
+
+      setTimeout(() => {
         btn.textContent = originalText;
-        btn.style.backgroundColor = ''; // Kembalikan ke warna CSS
-        this.reset(); // Kosongkan input form
-    }, 3000);
+        btn.style.backgroundColor = '';
+        this.reset();
+      }, 3000);
+    });
+  }
+
 });
