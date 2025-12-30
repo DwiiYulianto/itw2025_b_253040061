@@ -2,7 +2,6 @@
    BAGIAN JAVASCRIPT INTERAKSI
 ================================ */
 
-// Tunggu HTML siap dulu
 document.addEventListener('DOMContentLoaded', () => {
 
   /* 1. MOBILE MENU (HAMBURGER) */
